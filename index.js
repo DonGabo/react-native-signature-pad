@@ -118,6 +118,11 @@ class SignaturePad extends Component {
 
   };
 
+  onMessage = (event) => {
+    var base64DataUrl = JSON.parse(event.nativeEvent.data);
+    this._bridged_finishedStroke(base64DataUrl);
+  }
+
   render = () => {
     return (
         <WebView automaticallyAdjustContentInsets={false}
@@ -127,6 +132,7 @@ class SignaturePad extends Component {
                  source={this.source}
                  javaScriptEnabled={true}
                  scrollEnabled={false}
+                 onMessage={this.onMessage}
                  style={this.props.style}/>
     )
   };
